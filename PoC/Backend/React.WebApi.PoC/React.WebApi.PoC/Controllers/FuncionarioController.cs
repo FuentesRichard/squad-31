@@ -35,5 +35,27 @@ namespace React.WebApi.PoC.Controllers
 
             return Ok(funcionarios);
         }
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> ObterFuncionario([FromRoute]int id, [FromServices]IFuncionarioRepository funcionarioRepository)
+        {
+            var funcionario = await funcionarioRepository.ObterFuncionario(id);
+            if (funcionario != null)
+            {
+                return Ok(funcionario);
+            }
+            return NotFound();
+        }
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> RemoverFuncionario([FromRoute] int id, [FromServices] IFuncionarioRepository funcionarioRepository)
+        {
+            var deletarFuncionario = await funcionarioRepository.RemoverFuncionario(id);
+            if (deletarFuncionario)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

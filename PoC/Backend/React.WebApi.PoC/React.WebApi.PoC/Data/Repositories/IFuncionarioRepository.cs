@@ -8,5 +8,7 @@ namespace React.WebApi.PoC.Data.Repositories
     {
         Task<bool> AdicionarFuncionario(Funcionario funcionario);
         Task<List<Funcionario>> ObterFuncionarios();
+        Task<Funcionario> ObterFuncionario(int id);
+        Task<bool> RemoverFuncionario(int id);
     }
 }
