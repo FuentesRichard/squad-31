@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  react.webapi.poc:
+    image: ${DOCKER_REGISTRY-}reactwebapipoc
+    build:
+      context: .
+      dockerfile: React.WebApi.PoC/Dockerfile
+    depends_on:
+      - postgres_database
+  postgres_database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=fcamaraDB
+    ports:
+      - "5432:5432"
+    restart: "always"
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+  pdadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@fcamara.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    ports:
+      - "5050:80" 
+    volumes:
+      - pgadmin:/root/.pgadmin
+volumes:
+  database-data:
+  pgadmin:
