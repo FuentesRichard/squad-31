@@ -18,8 +18,8 @@ namespace React.WebApi.PoC.Controllers
             _logger = logger;
         }
         [HttpPost]
-        public async Task<IActionResult> CadastrarFuncionario([FromBody]Funcionario funcionario, 
-            [FromServices]IFuncionarioRepository funcionarioRepository)
+        public async Task<IActionResult> CadastrarFuncionario([FromBody] Funcionario funcionario,
+            [FromServices] IFuncionarioRepository funcionarioRepository)
         {
             var resultado = await funcionarioRepository.AdicionarFuncionario(funcionario);
             if (resultado)
@@ -29,15 +29,14 @@ namespace React.WebApi.PoC.Controllers
             return BadRequest();
         }
         [HttpGet]
-        public async Task<IActionResult> ListarFuncionarios([FromServices]IFuncionarioRepository funcionarioRepository)
+        public async Task<IActionResult> ListarFuncionarios([FromServices] IFuncionarioRepository funcionarioRepository)
         {
             var funcionarios = await funcionarioRepository.ObterFuncionarios();
 
             return Ok(funcionarios);
         }
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> ObterFuncionario([FromRoute]int id, [FromServices]IFuncionarioRepository funcionarioRepository)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObterFuncionario([FromRoute] int id, [FromServices] IFuncionarioRepository funcionarioRepository)
         {
             var funcionario = await funcionarioRepository.ObterFuncionario(id);
             if (funcionario != null)
@@ -46,12 +45,21 @@ namespace React.WebApi.PoC.Controllers
             }
             return NotFound();
         }
-        [HttpDelete]
-        [Route("{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoverFuncionario([FromRoute] int id, [FromServices] IFuncionarioRepository funcionarioRepository)
         {
             var deletarFuncionario = await funcionarioRepository.RemoverFuncionario(id);
             if (deletarFuncionario)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
+        [HttpPut]
+        public async Task<IActionResult> AlterarFuncionario([FromBody] Funcionario funcionario, [FromServices] IFuncionarioRepository funcionarioRepository)
+        {
+            var alterarFuncionario = await funcionarioRepository.AlterarFuncionario(funcionario);
+            if (alterarFuncionario)
             {
                 return Ok();
             }
