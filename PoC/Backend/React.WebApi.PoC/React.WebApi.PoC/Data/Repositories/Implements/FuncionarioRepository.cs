@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using React.WebApi.PoC.Entitites;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace React.WebApi.PoC.Data.Repositories.Implements
@@ -25,15 +26,8 @@ namespace React.WebApi.PoC.Data.Repositories.Implements
 
         public async Task<Funcionario> ObterFuncionario(int id)
         {
-            var funcionarios = await DataContext.Funcionarios.ToListAsync();
-            foreach(var item in funcionarios)
-            {
-                if (item.Id == id)
-                {
-                    return item;
-                }
-            }
-            return null;
+            var funcionario = await DataContext.Funcionarios.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return funcionario;
         }
 
         public async Task<List<Funcionario>> ObterFuncionarios()
@@ -43,34 +37,26 @@ namespace React.WebApi.PoC.Data.Repositories.Implements
 
         public async Task<bool> RemoverFuncionario(int id)
         {
-            var funcionarios = await DataContext.Funcionarios.ToListAsync();
-            foreach(var item in funcionarios)
+            var funcionario = await ObterFuncionario(id);
+            if (funcionario == null)
             {
-                if (item.Id == id)
-                {
-                    DataContext.Funcionarios.Remove(item);
-                    var alteracao = await DataContext.SaveChangesAsync();
-                    return alteracao > 0;
-                }
+                return false;
             }
-            return false;
+            DataContext.Funcionarios.Remove(funcionario);
+            return await DataContext.SaveChangesAsync() > 0;
         }
-        public async Task<bool> AlterarFuncionario(Funcionario funcionario)
+        public async Task<bool> AlterarFuncionario(Funcionario funcionarioAlterado)
         {
-            var funcionarios = await DataContext.Funcionarios.ToListAsync();
-            foreach(var item in funcionarios)
+            var funcionario = await ObterFuncionario(funcionarioAlterado.Id);
+            if (funcionario == null)
             {
-                if(item.Id == funcionario.Id)
-                {
-                    item.Nome = funcionario.Nome;
-                    item.Email = funcionario.Email;
-                    item.Senha = funcionario.Senha;
-                    DataContext.Funcionarios.Update(item);
-                    var alteracao = await DataContext.SaveChangesAsync();
-                    return alteracao > 0;
-                }
+                return false;
             }
-            return false;
+            funcionario.Nome = funcionarioAlterado.Nome;
+            funcionario.Email = funcionarioAlterado.Email;
+            funcionario.Senha = funcionarioAlterado.Senha;
+            DataContext.Update(funcionario);
+            return await DataContext.SaveChangesAsync() > 0;
         }
     }
 }

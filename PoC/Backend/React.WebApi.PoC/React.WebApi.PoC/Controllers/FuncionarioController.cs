@@ -36,7 +36,8 @@ namespace React.WebApi.PoC.Controllers
             return Ok(funcionarios);
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> ObterFuncionario([FromRoute] int id, [FromServices] IFuncionarioRepository funcionarioRepository)
+        public async Task<IActionResult> ObterFuncionario([FromRoute] int id,
+            [FromServices] IFuncionarioRepository funcionarioRepository)
         {
             var funcionario = await funcionarioRepository.ObterFuncionario(id);
             if (funcionario != null)
@@ -46,7 +47,8 @@ namespace React.WebApi.PoC.Controllers
             return NotFound();
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoverFuncionario([FromRoute] int id, [FromServices] IFuncionarioRepository funcionarioRepository)
+        public async Task<IActionResult> RemoverFuncionario([FromRoute] int id,         
+            [FromServices] IFuncionarioRepository funcionarioRepository)
         {
             var deletarFuncionario = await funcionarioRepository.RemoverFuncionario(id);
             if (deletarFuncionario)
@@ -56,7 +58,8 @@ namespace React.WebApi.PoC.Controllers
             return NotFound();
         }
         [HttpPut]
-        public async Task<IActionResult> AlterarFuncionario([FromBody] Funcionario funcionario, [FromServices] IFuncionarioRepository funcionarioRepository)
+        public async Task<IActionResult> AlterarFuncionario([FromBody] Funcionario funcionario,
+            [FromServices] IFuncionarioRepository funcionarioRepository)
         {
             var alterarFuncionario = await funcionarioRepository.AlterarFuncionario(funcionario);
             if (alterarFuncionario)
