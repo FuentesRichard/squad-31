@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+#div {
+    background-color: #ffb833;
+}
+
+#esquerda {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 68vw;
+    height: 100vh;
+}
+
+#texto-cental {
+    margin: 100% 0;
+}
+
+#direita {
+    float: right;
+    background-color: orange;
+    width: 30vw;
+    height: 100vh;
+}
+
+.logo-dir {
+    display: none;
+}
+
+#cont-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#cont-login {
+    margin: 100px 0px;
+    height: 200px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #esquerda {
+        display: none;
+    }
+
+    #direita {
+        width: 100vw;
+    }
+
+    .logo-dir {
+        display: block;
+    }
+}  
