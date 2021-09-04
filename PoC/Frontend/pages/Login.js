@@ -1,29 +1,54 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import styles from './App.module.css'
+import styled, { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+`;
+
+const Esquerda = styled.div`
+        float: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 68vw;
+        height: 100vh;
+`;
+
+const Background = styled.div`
+    background-color: #ffb833;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+`;
 
 function Login() {
+    
     return (
-            <main id={styles.todo}>
-                <div id={styles.esquerda}>
-                    <header className={styles["logo-esq"]}>
+            <Background>
+                <GlobalStyle/>
+                <Esquerda>
+                    <header>
                         <h1>Logo</h1>
                     </header>
 
 
-                    <div id="texto-central">
+                    <div>
                         <h1>Texto</h1>
                     </div>
-                </div>
-                <div id="direita">
-                    <header className="logo-dir">
+                </Esquerda>
+                <div>
+                    <header>
                         <h1>Logo</h1>
                     </header>
 
 
-                    <div id="cont-login">
-                        <p>E-mail</p>
-                        <input type="text" placeholder="E-mail"/>
+                    <div>
+                        <p>CPF</p>
+                        <input type="text" placeholder="CPF"/>
                         <p>Senha</p>
                         <input type="password" placeholder="Senha"/>
                     </div>
@@ -35,7 +60,7 @@ function Login() {
                         </Link>
                     </footer>
                 </div>
-            </main>
+            </Background>
     )
 }
 
