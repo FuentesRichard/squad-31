@@ -2,10 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
   "/Cadastro": "pages/Cadastro.js"
-=======
-  "/Login": "pages/Login.js",
-  "/": "pages/index.js"
->>>>>>> 82cc4b3b5824f03c194aa5c3cfae2b14e83d5cf4
 }
