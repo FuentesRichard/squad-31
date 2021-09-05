@@ -29,35 +29,68 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Esquerda = styled.div`
-        float: left;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 68vw;
-        height: 100vh;
-`;
-
 const Background = styled.div`
-    background-color: #ffb833;
+    background-color: var(--orange-fourth);
     height: 100vh;
     width: 100vw;
     margin: 0;
+`;
+
+const Extra = styled.div`
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 68vw;
+    height: 100vh;
+
+    @media (max-width: 700px){
+        display: none;
+    }
+`;
+
+const Principal = styled.main`
+    heigth: 100vh
+
+    h1 {
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    @media (max-width: 700px){
+        width: 100vw;
+    }
 `;
 
 const FormLogin = styled.div`
   div {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      justify-content: center;
+      align-items: center; /* align-items: flex-start; */
+      margin: 100px 0px;
+      min-height: 30vh;
+
+      
   }
 
   input {
     border: 2px solid #AAA;
-    border-radius: 4px;
+    border-radius: 6px;
+    margin: 10px;
     width: 243px;
     height: 31px;
   }
+
+  button {
+      border-radius: 6px;
+      height: 50px;
+      width: 85px
+  }
+`;
+
+const Rodape = styled.footer`
+
 `;
 
 function Login() {
@@ -65,32 +98,33 @@ function Login() {
     return (
             <Background>
                 <GlobalStyle/>
-                <Esquerda>
+                <Extra>
                     <header>
                         <h1>Logo</h1>
                     </header>
 
                     <div>
-                        <h1>Texto</h1>
+                        <p>Texto</p>
                     </div>
-                </Esquerda>
-                <div>
+                </Extra>
+                <Principal>
                     <h1>Logo</h1>
                     <FormLogin>
                         <div>
-                            <label for="cpf">CPF</label>
+                            <label htmlFor="cpf">CPF</label>
                             <input id="cpf" type="text" placeholder="CPF"/>
-                            <label for="senha">Senha</label>
+                            <label htmlFor="senha">Senha</label>
                             <input id="senha" type="password" placeholder="Senha"/>
+                            <button>Entrar</button>
                         </div>
                     </FormLogin>
 
-                    <footer>
+                    <Rodape>
                         <Link href="/">
-                        <a>Página Home</a>
+                            <a>Página Home</a>
                         </Link>
-                    </footer>
-                </div>
+                    </Rodape>
+                </Principal>
             </Background>
     )
 }

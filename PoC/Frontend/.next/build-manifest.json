@@ -14,7 +14,16 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
+<<<<<<< HEAD
     "/Cadastro": [
+=======
+    "/": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/index.js"
+    ],
+    "/Login": [
+>>>>>>> 82cc4b3b5824f03c194aa5c3cfae2b14e83d5cf4
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/Cadastro.js"
