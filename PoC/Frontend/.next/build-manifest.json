@@ -14,10 +14,10 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
-    "/Login": [
+    "/Cadastro": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/Login.js"
+      "static/chunks/pages/Cadastro.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",

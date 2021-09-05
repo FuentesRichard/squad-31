@@ -7,6 +7,9 @@ function Home() {
     <Link href="./Login">
       <a>Página de Login</a>
     </Link>
+    <Link href="./Cadastro">
+      <a>Cadastre-se</a>
+    </Link>
     </>
   )
 }
