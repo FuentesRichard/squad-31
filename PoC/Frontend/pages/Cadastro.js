@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { GlobalStyle } from "./Login";
 
 const FormCadastro = styled.form`
    display: flex;
@@ -25,11 +26,14 @@ const FlexContainerLabel = styled.div`
 function Cadastro() {
    return (
       <FormCadastro>
-
+         <GlobalStyle/>
          <label for="email">Email</label>
          <input id="email" type="email" />
 
          <label for="senha">Senha</label>
+         <input id="senha" type="password" />
+         
+         <label for="senha">Confirmar senha</label>
          <input id="senha" type="password" />
 
          <label for="nome">Nome</label>

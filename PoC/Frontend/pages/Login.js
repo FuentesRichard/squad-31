@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import styled, { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     :root {
         --orange-first: #FE4400;
         --orange-second: #FC6027;
