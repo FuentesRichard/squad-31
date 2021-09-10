@@ -39,7 +39,7 @@ namespace Day.Office.Api.Controllers
             return NotFound();
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletarAgenda([FromRoute] int id,
+        public async Task<IActionResult> DeletarAgendamento([FromRoute] int id,
             [FromServices] IAgendamentoRepository agendamentoRepository)
         {
             var agendamentoRemovido = await agendamentoRepository.RemoverAgendamento(id);

@@ -1,4 +1,6 @@
 using Day.Office.Api.Data.Context;
+using Day.Office.Api.Data.Repositories;
+using Day.Office.Api.Data.Repositories.Implements;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,7 @@ namespace Day.Office.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
