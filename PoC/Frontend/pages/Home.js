@@ -18,11 +18,37 @@ const Cabecalho = styled.header`
    }
 `;
 
+const Main = styled.main`
+   h1 {
+      font-size: 48px;
+      font-weight: 600;
+   }
+
+   input {
+      width: 400px;
+      height: 48px;
+      border: 1.5px solid #AAAAAA;
+      border-radius: 30px;
+      padding-left: 36px;
+      box-sizing: border-box;
+   }
+
+   h2 {
+      font-size: 24px;
+      display: inline;
+      font-weight: 400;
+   }
+
+   h2:hover {
+      border-bottom: 3px solid #000;
+   }
+`;
+
 export default function Home() {
    return (
       <>
          <Cabecalho>
-            <GlobalStyle />
+            <GlobalStyle/>
             <img src=""></img>
             <nav>
                <ul>
@@ -42,7 +68,8 @@ export default function Home() {
             </nav>
          </Cabecalho>
 
-         <main>
+         <Main>
+            <GlobalStyle/>
             <div>
                <h1>Meu Day Office</h1>
                <input type="text" placeholder="Pesquisar meus eventos" />
@@ -54,7 +81,7 @@ export default function Home() {
                <h2>Histórico</h2>
             </div>
 
-         </main>
+         </Main>
       </>
    );
 }
