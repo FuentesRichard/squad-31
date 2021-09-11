@@ -42,13 +42,26 @@ const Main = styled.main`
    h2:hover {
       border-bottom: 3px solid #000;
    }
+
+   button {
+      height: 48px;
+      width: 105.16px;
+      font-family: Roboto;  
+      text-transform: uppercase;
+      letter-spacing: 1.19px;
+      border: none;
+      border-radius: 50px;
+      background-color: #979797;
+      color: #fff;
+      box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+   }
 `;
 
 export default function Home() {
    return (
       <>
          <Cabecalho>
-            <GlobalStyle/>
+            <GlobalStyle />
             <img src=""></img>
             <nav>
                <ul>
@@ -69,7 +82,7 @@ export default function Home() {
          </Cabecalho>
 
          <Main>
-            <GlobalStyle/>
+            <GlobalStyle />
             <div>
                <h1>Meu Day Office</h1>
                <input type="text" placeholder="Pesquisar meus eventos" />
