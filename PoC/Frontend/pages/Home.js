@@ -13,6 +13,7 @@ const Cabecalho = styled.header`
 export default function Home() {
    return (
       <Cabecalho>
+         <GlobalStyle/>
          <img src=""></img>
          <nav>
             <ul>
