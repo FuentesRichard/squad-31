@@ -2,11 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-<<<<<<< HEAD
-  "/Cadastro": "pages/Cadastro.js"
-=======
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/Login": "pages/Login.js"
->>>>>>> 52a2d10676e3ba7a2bc77bc47e76f0c81fc875ec
+  "/Home": "pages/Home.js"
 }
