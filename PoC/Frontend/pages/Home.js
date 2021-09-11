@@ -1,19 +1,27 @@
 import React from "react";
+import styled from "styled-components";
+import { GlobalStyle } from "./Login";
+
+const Cabecalho = styled.header`
+   display: flex;
+
+   ul {
+      list-style: none;
+   }
+`;
 
 export default function Home() {
-   return(
-      <>
-         <header>
-            <img src=""></img>
-            <nav>
-               <ul>
-                  <li>Início</li>
-                  <li>Agendamento</li>
-                  <li>Conta</li>
-                  <li>Sair</li>
-               </ul>
-            </nav>
-         </header>
-      </>
+   return (
+      <Cabecalho>
+         <img src=""></img>
+         <nav>
+            <ul>
+               <li>Início</li>
+               <li>Agendamento</li>
+               <li>Conta</li>
+               <li>Sair</li>
+            </ul>
+         </nav>
+      </Cabecalho>
    );
 }
