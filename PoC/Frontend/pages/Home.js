@@ -19,7 +19,18 @@ const Cabecalho = styled.header`
 `;
 
 const Main = styled.main`
-   h1 {
+   .container {
+      padding: 0 164px;
+   }
+
+   .first-area{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 17px;
+   }
+
+   .title {
       font-size: 48px;
       font-weight: 600;
    }
@@ -33,20 +44,31 @@ const Main = styled.main`
       box-sizing: border-box;
    }
 
-   h2 {
+   input:focus {
+      border: none;
+   }
+
+   .btn-section {
       font-size: 24px;
       display: inline;
       font-weight: 400;
+      margin-right: 83px;
+      background-color: #fff;
+      border: none;
+      border-bottom: 3px solid #fff;
+      cursor: pointer;
    }
 
-   h2:hover {
+   .btn-section:hover {
       border-bottom: 3px solid #000;
    }
 
-   button {
+   .btn-criar {
       height: 48px;
       width: 105.16px;
-      font-family: Roboto;  
+      cursor: pointer;
+      font-family: Roboto;
+      font-size: 13.38px;  
       text-transform: uppercase;
       letter-spacing: 1.19px;
       border: none;
@@ -54,6 +76,27 @@ const Main = styled.main`
       background-color: #979797;
       color: #fff;
       box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+   }
+
+   .btn-criar:hover {
+      border: none;
+   }
+
+   .teams {
+      width: 257px;
+      height: 35px;
+      background-color: #F2F0F0;
+      color: #AAAAAA;
+      border: 1.5px solid #AAAAAA;
+      border-radius: 50px;
+      font-size: 10.1182px;
+      margin-left: 169px;
+      cursor: pointer;
+   }
+
+   .content {
+      margin-top: 21px;
+      background-color: #F2F0F0;
    }
 `;
 
@@ -83,17 +126,28 @@ export default function Home() {
 
          <Main>
             <GlobalStyle />
-            <div>
-               <h1>Meu Day Office</h1>
-               <input type="text" placeholder="Pesquisar meus eventos" />
-               <button>+ Criar</button>
-            </div>
+            <section className="container ">
+               <div className="first-area">
+                  <h1 className="title">Meu Day Office</h1>
+                  <input type="text" placeholder="Pesquisar meus eventos" />
+                  <button className="btn-criar">+ Criar</button>
+               </div>
 
-            <div>
-               <h2>Eventos</h2>
-               <h2>Histórico</h2>
-            </div>
+               <button className="btn-section">Eventos</button>
+               <button className="btn-section">Histórico</button>
 
+               <div className="content">
+               </div>
+            </section>
+
+            <section>
+               <div className="container">
+                  <h2 className="title">Meu Teams</h2>
+               </div>
+               <div className="content">
+                  <button className="teams">Sincronizar com o Microsoft Teams</button>
+               </div>
+            </section>
          </Main>
       </>
    );
