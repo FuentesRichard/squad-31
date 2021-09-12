@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { GlobalStyle } from "./Login";
+import Link from "next/dist/client/link";
 
 const Cabecalho = styled.header`
    display: flex;
@@ -15,6 +16,21 @@ const Cabecalho = styled.header`
 
    li {
       margin-right: 49px;
+   }
+
+   a {
+      color: #000;
+      font-size: 26px;
+      font-weight: 600;
+      text-decoration: none;
+   }
+
+   a:hover {
+      border-bottom: 3px solid #000;
+   }
+
+   .ativo {
+      border-bottom: 3px solid #000;
    }
 `;
 
@@ -109,16 +125,24 @@ export default function Home() {
             <nav>
                <ul>
                   <li>
-                     <a href="#">Início</a>
+                     <Link href="./Home">
+                        <a className="ativo">Início</a>
+                     </Link>
                   </li>
                   <li>
-                     <a href="#">Agendamento</a>
+                     <Link href="#">
+                        <a>Agendamento</a>
+                     </Link>
                   </li>
                   <li>
-                     <a href="#">Conta</a>
+                     <Link href="#">
+                        <a>Conta</a>
+                     </Link>
                   </li>
                   <li>
-                     <a href="#">Sair</a>
+                     <Link href="#">
+                        <a>Sair</a>
+                     </Link>
                   </li>
                </ul>
             </nav>
