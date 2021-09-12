@@ -64,7 +64,6 @@ const Main = styled.main`
       outline: 0;
    }
 
-
    .btn-section {
       font-size: 24px;
       display: inline;
@@ -115,6 +114,10 @@ const Main = styled.main`
       margin-top: 21px;
       background-color: #F2F0F0;
    }
+`;
+
+const Footer = styled.footer`
+   
 `;
 
 export default function Home() {
@@ -174,6 +177,10 @@ export default function Home() {
                </div>
             </section>
          </Main>
+      
+         <Footer>
+
+         </Footer>
       </>
    );
 }
