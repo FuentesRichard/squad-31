@@ -3,7 +3,16 @@ import styled from "styled-components";
 import { GlobalStyle } from "./Login";
 import Link from "next/dist/client/link";
 
+const Body = styled.body`
+   height: 100vh;
+   display: grid;
+   grid-template-columns: 164px 1fr 164px;
+   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+`;
+
 const Cabecalho = styled.header`
+   grid-column: 2/2;
+   grid-row: 1/2;
    display: flex;
    align-items: center;
    justify-content: space-around;
@@ -35,8 +44,15 @@ const Cabecalho = styled.header`
 `;
 
 const Main = styled.main`
+   grid-column: 1/4;
+   grid-row: 2/6;
    .container {
       padding: 0 164px;
+   }
+
+   .area1 {
+      grid-column: 2/2;
+      grid-row: 2/3;
    }
 
    .first-area{
@@ -114,15 +130,32 @@ const Main = styled.main`
       margin-top: 21px;
       background-color: #F2F0F0;
    }
-`;
+
+   .area2 {
+      grid-column: 2/2;
+      grid-row: 3/4;
+   }
+
+   .area3 {
+      grid-column: 2/2;
+      grid-row: 4/5;
+   }
+
+   .area4 {
+      grid-column: 2/2;
+      grid-row: 5/6;
+   }
+   `;
 
 const Footer = styled.footer`
-   
+   grid-column: 1/4;
+   grid-row: 6/7;
+   background-color: #9A9696;
 `;
 
 export default function Home() {
    return (
-      <>
+      <Body>
          <Cabecalho>
             <GlobalStyle />
             <img src=""></img>
@@ -155,32 +188,35 @@ export default function Home() {
          <Main>
             <GlobalStyle />
             <section className="container ">
-               <div className="first-area">
-                  <h1 className="title">Meu Day Office</h1>
-                  <input type="text" placeholder="Pesquisar meus eventos" />
-                  <button className="btn-criar">+ Criar</button>
+               <div className="area1">
+                  <div className="first-area">
+                     <h1 className="title">Meu Day Office</h1>
+                     <input type="text" placeholder="Pesquisar meus eventos" />
+                     <button className="btn-criar">+ Criar</button>
+                  </div>
+
+                  <button className="btn-section">Eventos</button>
+                  <button className="btn-section">Histórico</button>
                </div>
 
-               <button className="btn-section">Eventos</button>
-               <button className="btn-section">Histórico</button>
 
-               <div className="content">
+               <div className="content area2">
                </div>
             </section>
 
             <section>
-               <div className="container">
+               <div className="container area3">
                   <h2 className="title">Meu Teams</h2>
                </div>
-               <div className="content">
+               <div className="content area4">
                   <button className="teams">Sincronizar com o Microsoft Teams</button>
                </div>
             </section>
          </Main>
-      
-         <Footer>
 
+         <Footer>
+            <h2>Logo</h2>
          </Footer>
-      </>
+      </Body>
    );
 }
