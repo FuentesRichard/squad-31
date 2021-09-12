@@ -61,8 +61,9 @@ const Main = styled.main`
    }
 
    input:focus {
-      border: none;
+      outline: 0;
    }
+
 
    .btn-section {
       font-size: 24px;
