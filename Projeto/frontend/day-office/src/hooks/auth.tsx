@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { AuthenticationResult, PublicClientApplication } from '@azure/msal-browser';
+import { AccountInfo, PublicClientApplication } from '@azure/msal-browser';
 import config from '../config/msalConfig';
 import apiConfig from '../config/apiConfig';
 
@@ -18,13 +18,13 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const msalIntance = new PublicClientApplication(config.msalConfig);
 
-const AuthProvider: React.FC = ({ children }) => {  
-  const [data, setData] = useState<AuthState>(() => {     
+const AuthProvider: React.FC = ({ children }) => {
+  const [data, setData] = useState<AuthState>(() => {
     const tokenMicrosoft = localStorage.getItem('@DayOffice:microsoftToken');
     const tokenApi = localStorage.getItem('@DayOffice:tokenApi');
     const user = localStorage.getItem('@DayOfficer:user');
     if (tokenMicrosoft && tokenApi && user) {
-      return {user, tokenApi, tokenMicrosoft};
+      return { user, tokenApi, tokenMicrosoft };
     }
     return {} as AuthState;
   });
@@ -33,33 +33,52 @@ const AuthProvider: React.FC = ({ children }) => {
     return msalIntance.loginPopup(config.loginRequest);
   });
 
-  const getTokenApi = (async ()=> {    
-    const account = msalIntance.getAccountByUsername(data.user ? data.user : '');
-    if (account) {
-      return await msalIntance.acquireTokenSilent({account, scopes: apiConfig.scopes});      
-    }
-    return {} as AuthenticationResult;
+  const getTokenApi = (async (account: AccountInfo) => {
+    return await msalIntance.acquireTokenSilent({ account, scopes: apiConfig.scopes });
   });
 
   const signIn = useCallback(async () => {
-    debugger;
     var authResponse = await getTokenMicrosoft();
-    setData({user : authResponse.account?.username} as AuthState);
-    var tokenApi = await getTokenApi();
-    var user = authResponse.account?.username;    
+    if (authResponse.account) {
+      const tokenApi = await passTokenToApi(authResponse.account);
+      var user = authResponse.account?.username;
 
-    localStorage.setItem('@DayOffice:microsoftToken', authResponse.accessToken);
-    localStorage.setItem('@DayOffice:tokenApi', tokenApi.accessToken);
-    localStorage.setItem('@DayOfficer:user', user ? user : '');
+      localStorage.setItem('@DayOffice:microsoftToken', authResponse.accessToken);
+      localStorage.setItem('@DayOffice:tokenApi', tokenApi);
+      localStorage.setItem('@DayOfficer:user', user ? user : '');
 
-    setData({user, tokenApi : tokenApi.accessToken, tokenMicrosoft : authResponse.accessToken});
+      setData({ user, tokenApi, tokenMicrosoft: authResponse.accessToken });
+    }
   }, []);
+
+  const getTokenRedirect = (async (account: AccountInfo) => {
+    return msalIntance.acquireTokenSilent({ scopes: apiConfig.scopes, account }).catch(error => {
+      return msalIntance.acquireTokenPopup({ scopes: apiConfig.scopes, account });
+    })
+  });
+
+  const passTokenToApi = (async (account: AccountInfo): Promise<string> => {
+    const result = await getTokenRedirect(account)
+      .then(response => {
+        if (response) {
+          return response.accessToken;
+        }
+        return '';
+      }).catch(error => {
+        console.error(error);
+      });
+    return result ? result : '';
+  });
 
   const signOut = useCallback(() => {
     const logoutRequest = {
       account: msalIntance.getAccountByUsername(data.user ? data.user : '')
     };
     msalIntance.logoutPopup(logoutRequest);
+
+    localStorage.removeItem('@DayOffice:microsoftToken');
+    localStorage.removeItem('@DayOffice:tokenApi');
+    localStorage.removeItem('@DayOfficer:user');
 
     setData({} as AuthState);
   }, [data]);

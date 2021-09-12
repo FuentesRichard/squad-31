@@ -3,7 +3,6 @@ import { useAutenticacao } from '../../hooks/auth';
 
 const SignIn : React.FC = () => {        
     const { signIn,signOut, user } = useAutenticacao();
-    debugger;
     if (user.user) {
         return (
             <>
