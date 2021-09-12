@@ -3,11 +3,16 @@ import styled from "styled-components";
 import { GlobalStyle } from "./Login";
 import Link from "next/dist/client/link";
 
-const Body = styled.body`
+const Body = styled.div`
    height: 100vh;
    display: grid;
    grid-template-columns: 164px 1fr 164px;
    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+   @media (max-width: 376px) {
+      height: 165vh;
+      grid-template-columns: 30px 1fr 30px;
+   }
 `;
 
 const Cabecalho = styled.header`
@@ -40,6 +45,12 @@ const Cabecalho = styled.header`
 
    .ativo {
       border-bottom: 3px solid #000;
+   }
+
+   @media (max-width: 376px) {
+      ul {
+         display: none;
+      }
    }
 `;
 
@@ -158,7 +169,7 @@ export default function Home() {
       <Body>
          <Cabecalho>
             <GlobalStyle />
-            <img src=""></img>
+            <h1>LOGO</h1>
             <nav>
                <ul>
                   <li>
