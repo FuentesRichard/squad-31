@@ -1,0 +1,22 @@
+#page-cadastro {
+   form {
+      display: flex;
+      flex-direction: column;
+   }
+   
+   div {
+      display: flex;
+   }
+
+   #input {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+   }
+
+   #label{
+      display: flex;
+      flex-direction: column;
+      margin-top: 2px;
+   }
+}
