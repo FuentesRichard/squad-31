@@ -9,6 +9,12 @@ namespace Day.Office.Api.Entities
 
         }
 
+        public Funcionario(string nomeCompleto, string email, string idExterno)
+        {            
+            NomeCompleto = nomeCompleto;
+            Email = email;
+            IdExterno = idExterno;
+        }
         public Funcionario(int id, string nomeCompleto, string email, string idExterno)
         {
             Id = id;

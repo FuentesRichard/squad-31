@@ -8,7 +8,14 @@ namespace Day.Office.Api.Entities
         {
 
         }
-
+        public Agendamento(DateTime data, DateTime horaInicial, DateTime horaFinal, int idFuncionario, int idEstacaoTrabalho)
+        {            
+            Data = data;
+            HoraInicial = horaInicial;
+            HoraFinal = horaFinal;
+            IdFuncionario = idFuncionario;
+            IdEstacaoTrabalho = idEstacaoTrabalho;
+        }
         public Agendamento(int id, DateTime data, DateTime horaInicial, DateTime horaFinal, int idFuncionario, int idEstacaoTrabalho)
         {
             Id = id;

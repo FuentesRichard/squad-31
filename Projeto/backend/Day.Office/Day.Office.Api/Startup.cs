@@ -1,3 +1,5 @@
+using Day.Office.Api.Clients;
+using Day.Office.Api.Clients.Implements;
 using Day.Office.Api.Data.Context;
 using Day.Office.Api.Data.Repositories;
 using Day.Office.Api.Data.Repositories.Implements;
@@ -29,9 +31,13 @@ namespace Day.Office.Api
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
             services.AddDbContext<DataContext>(opts => opts.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
             services.AddScoped<IEscritorioRepository, EscritorioRepository>();
             services.AddScoped<IEstacaoTrabalhoRepository, EstacaoTrabalhoRepository>();
+            services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddScoped<IGraphApi, GraphApi>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
