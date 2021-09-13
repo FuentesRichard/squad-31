@@ -18,15 +18,15 @@ export function Login() {
                 <form>
                     <div>
                         <label htmlFor="cpf">CPF</label>
-                        <input id="cpf" type="text" placeholder="CPF"/>
+                        <input id="cpf" type="text" placeholder="CPF" />
                         <label htmlFor="senha">Senha</label>
-                        <input id="senha" type="password" placeholder="Senha"/>
+                        <input id="senha" type="password" placeholder="Senha" />
                         <button>Entrar</button>
                     </div>
                 </form>
 
                 <footer>
-                    <a href="/">Página Home</a>
+                    <a href="/home">Página Home</a>
                 </footer>
             </main>
         </div>
