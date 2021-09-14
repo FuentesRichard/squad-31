@@ -1,0 +1,56 @@
+:root {
+  --orange-first: #FE4400;
+  --orange-second: #FC6027;
+  --orange-third: #EF653C;
+  --orange-fourth: #FE885C;
+
+  --blue-first: #4B4FA1;
+  --blue-second: #414099;
+  --blue-third: #686DC4;
+  --blue-fourth: #96B3F2;
+
+  --black: #303033;
+  --grey: #C1C1C1;
+
+  --purple: #4A1A8C;
+
+  --yellow: #FFC91D;
+}
+
+* {
+  margin : 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body, input, button, textarea, select {
+  font: 400 16px 'Montserrat', sans-serif;
+}
+
+button {
+  height: 50px;
+  width: 200px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: 500; 
+  color: #ffffff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  border: 0;
+
+  transition: filter 0.2s;
+
+  &:not(:disabled):hover {
+      filter: brightness(0.9);
+  }       
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
