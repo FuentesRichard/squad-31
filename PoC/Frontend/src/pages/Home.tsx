@@ -1,6 +1,4 @@
-import React from "react";
 import "../styles/Home.scss";
-
 
 export function Home() {
    return (
@@ -9,7 +7,7 @@ export function Home() {
             <img src=""></img>
             <nav>
                <ul>
-                  <li>
+                  {/* <li>
                      <a href="#">Início</a>
                   </li>
                   <li>
@@ -20,7 +18,7 @@ export function Home() {
                   </li>
                   <li>
                      <a href="#">Sair</a>
-                  </li>
+                  </li> */}
                </ul>
             </nav>
          </header>

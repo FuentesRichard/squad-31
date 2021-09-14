@@ -33,8 +33,7 @@ button {
   width: 200px;
   border-radius: 8px;
   margin-top: 10px;
-  font-weight: 500;
-  background: #f88315;
+  font-weight: 500; 
   color: #ffffff;
 
   display: flex;
@@ -43,10 +42,6 @@ button {
 
   cursor: pointer;
   border: 0;
-
-  img {
-      margin-right: 8px;
-  }
 
   transition: filter 0.2s;
 

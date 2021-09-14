@@ -1,34 +1,21 @@
-import React, { Component } from 'react';
 import '../styles/Login.scss'
+import Illustration from '../images/Illustration_1.svg'
+import Logo_teams from '../images/Logo-microsoft_teams.svg'
 
 export function Login() {
     return (
         <div id="page-login">
             <aside>
-                <header>
-                    <h1>Logo</h1>
-                </header>
-
-                <div>
-                    <p>Texto</p>
-                </div>
+                <img id="illustration" src={Illustration} alt="Homem apoiado em uma ampulheta segurando um relógio na mão"/>
             </aside>
             <main>
-                <h1>Logo</h1>
-                <form>
-                    <div>
-                        <label htmlFor="cpf">CPF</label>
-                        <input id="cpf" type="text" placeholder="CPF" />
-                        <label htmlFor="senha">Senha</label>
-                        <input id="senha" type="password" placeholder="Senha" />
-                        <button>Entrar</button>
-                    </div>
-                </form>
-
-                <footer>
-                    <a href="/home">Página Home</a>
-                </footer>
+                <h1>Bem-vinde!</h1>
+                <div id="separator"></div>
+                <p id="texto">O nosso Day Office possui integração com o sistema Microsoft Teams, então pedimos que realize o login através da sua conta na plataforma.</p>
+                <button> <img src={Logo_teams} alt="Logo Microsoft Teams" /> Entrar com Microsoft Teams</button>
+                <p id="recuperarSenha">Esqueceu seu senha? <a href="#">Clique aqui</a></p> 
             </main>
+            <footer></footer>
         </div>
     )
 }

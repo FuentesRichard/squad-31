@@ -1,16 +1,23 @@
 #page-login {
-    background-color: var(--orange-fourth);
+    background-color: #E5E5E5;
     height: 100vh;
     width: 100vw;
     margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 4fr 1fr;
+    grid-template-rows: 100vh;
+    justify-self: center;
+    align-self: center;
+    overflow: hidden;
 
     aside {
-        float: left;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 68vw;
-        height: 100vh;
+        grid-row: 1 / 10;
+        grid-column-start: 2;
+        justify-self: center;
+        
+        #illustration {
+            height: 90vh;
+        }
 
         @media (max-width: 700px){
             display: none;
@@ -18,42 +25,110 @@
     }
 
     main {
-        height: 100vh
+        height: 90vh;
+        grid-column-start: 4;
+        justify-self: center;
+        align-self: center;
 
         h1 {
-            font-weight: bold;
-            font-size: 30px;
+            margin-top: 15%;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 40px;
         }
 
-        @media (max-width: 700px){
-            width: 100vw;
-        }
-    }
-
-    form {
-        div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center; /* align-items: flex-start; */
-            margin: 100px 0px;
-            min-height: 30vh;
-
-            
+        #separator {
+            margin: auto;
+            margin-bottom: 30px;
+            width: 80%;
+            height: 2px;
+            background: #FE4400;
         }
 
-        input {
-            border: 2px solid #AAA;
-            border-radius: 6px;
-            margin: 10px;
-            width: 243px;
-            height: 31px;
+        #texto {
+            font-size: 24px;
+            width: 80%;
+            margin-bottom: 7%;
+            margin-left: 10%;
+            text-align: center;
         }
 
         button {
-            border-radius: 6px;
-            height: 50px;
-            width: 85px
+            font-weight: 600;
+            font-size: 16px;
+            background-color: #404099;
+            border-radius: 30px;
+            height: 3em;
+            width: 80%;
+            margin: 5% 10%;
+
+            img {
+                margin-right: 5px;
+            }
+        }
+
+        #recuperarSenha {
+            font-size: 16px;
+            text-align: center;
+        }
+
+        @media (max-width: 1100px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            #separator {
+                height: 1.5px;
+            }
+
+            #texto {
+                font-size: 18px;
+            }
+
+            button {
+                font-size: 12px;
+            }
+
+            #recuperarSenha {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 800px){
+            width: 45vw;
+            height: 100%;
+
+            #separator {
+                width: 60%;
+                margin-left: 20%;
+            }
+
+            #texto {
+                font-size: 16px;
+                height: 20%;
+                width: 90%;
+                margin-left: 5%;
+            }
+
+            button {
+                width: 85%;
+                margin: 5% 7.5%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            width: 70vw;
+            margin-right: 13vw;
+
+            #texto {
+                height: 18%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            #texto {
+                height: 35%;
+            }
         }
     }
 }
