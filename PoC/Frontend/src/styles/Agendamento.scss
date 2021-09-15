@@ -73,9 +73,18 @@
         }
       }
 
-      // input {
-        
-      // }
+      input {
+        border: none;
+        padding: 0 1em 0 0;
+        margin: 0 0 0 5px;
+        width: 85%;
+        font-family: inherit;
+        font-size: 0.9em;
+        font-weight: 300;
+        cursor: pointer;
+        line-height: inherit;
+        outline: none;
+      }
     }
 
     #select-div {
