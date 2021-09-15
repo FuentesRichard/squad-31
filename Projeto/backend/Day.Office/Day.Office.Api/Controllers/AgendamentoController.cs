@@ -148,10 +148,16 @@ namespace Day.Office.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> AlterarAgendamento([FromBody] Agendamento agendamento)
+        public async Task<IActionResult> AlterarAgendamentoRequest([FromBody] AlterarAgendamentoRequest agendamento)
         {
-            var alterarAgendamento = await _agendamentoRepository.AlterarDados(agendamento);
-            if (alterarAgendamento)
+            var agendamentoAntigo = await _agendamentoRepository.ObterAgendamento(agendamento.IdAgendamento);
+            agendamentoAntigo.Data = agendamento.Data;
+            agendamentoAntigo.HoraInicial = agendamento.CheckIn;
+            agendamentoAntigo.HoraFinal = agendamento.CheckOut;
+            agendamentoAntigo.IdEstacaoTrabalho = agendamento.IdEstacaoTrabalho;
+            var resultado = await _agendamentoRepository.AlterarDados(agendamentoAntigo);
+
+            if (resultado)
             {
                 return Ok();
             }
