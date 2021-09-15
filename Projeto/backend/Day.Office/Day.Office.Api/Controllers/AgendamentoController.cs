@@ -5,6 +5,7 @@ using Day.Office.Api.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -24,6 +25,7 @@ namespace Day.Office.Api.Controllers
             _funcionarioRepository = funcionarioRepository;
             _graphApi = graphApi;
         }
+
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> CadastrarAgendamento([FromBody] CriarAgendamentoRequest novoAgendamento)
@@ -80,6 +82,7 @@ namespace Day.Office.Api.Controllers
 
             return Ok(agendamentos);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> ObterAgendamento([FromRoute] int id)
         {
@@ -90,6 +93,35 @@ namespace Day.Office.Api.Controllers
             }
             return NotFound();
         }
+
+        [Authorize]
+        [HttpGet("funcionario")]
+        public async Task<IActionResult> ObterAgendamentoFuncionario([FromHeader] string authorizationMS)
+        {
+            var claimIdentity = User.Identity as ClaimsIdentity;
+            var emailFuncionario = claimIdentity.FindFirst("preferred_username").Value;
+
+            var funcionario = await _funcionarioRepository.ObterFuncionarioPorEmail(emailFuncionario);
+            if (funcionario == null)
+            {
+                var infomacoesUsuario = await _graphApi.ObterInformacoesUsuario(authorizationMS);
+                funcionario = new Funcionario(infomacoesUsuario.DisplayName, infomacoesUsuario.UserPrincipalName, infomacoesUsuario.Id);
+
+                await _funcionarioRepository.AdicionarFuncionario(funcionario);
+            }
+
+            var resultado = await _agendamentoRepository.ObterAgendamentosFuncionario(funcionario.Id);
+
+            return Ok(resultado.Select(x => new AgendamentoDto()
+            {
+                Id = x.Id,
+                Data = x.Data.Date.ToString("dd-MM-yyyy"),
+                HoraInicial = x.HoraInicial.ToString("HH:ss"),
+                HoraFinal = x.HoraFinal.ToString("HH:ss"),
+                NomeFuncionario = funcionario.NomeCompleto
+            }));
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletarAgendamento([FromRoute] int id,
             [FromServices] IAgendamentoRepository agendamentoRepository)
@@ -101,8 +133,9 @@ namespace Day.Office.Api.Controllers
             }
             return NotFound();
         }
+
         [HttpPut]
-        public async Task<IActionResult> AlterarAgendamento([FromBody] Agendamento agendamento            )
+        public async Task<IActionResult> AlterarAgendamento([FromBody] Agendamento agendamento)
         {
             var alterarAgendamento = await _agendamentoRepository.AlterarDados(agendamento);
             if (alterarAgendamento)

@@ -63,5 +63,10 @@ namespace Day.Office.Api.Data.Repositories.Implements
                 .Where(x => x.EstacaoTrabalho.IdEscritorio == idEscritorio &&
                 x.Data == data && (checkIn >= x.HoraInicial && checkOut <= x.HoraFinal)).ToListAsync();
         }
+
+        public async Task<IEnumerable<Agendamento>> ObterAgendamentosFuncionario(int idFuncionario)
+        {
+            return await context.Agendamento.Where(x => x.IdFuncionario == idFuncionario).ToListAsync();
+        }
     }
 }
