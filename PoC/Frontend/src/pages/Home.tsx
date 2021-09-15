@@ -1,5 +1,6 @@
 import "../styles/Home.scss";
 import relogioSVG from "../images/Logo.svg";
+import lupaSVG from "../images/Lupa.svg";
 
 export function Home() {
    return (
@@ -26,7 +27,7 @@ export function Home() {
 
          <main>
             <div className="titles">
-               <div>
+               <div className="ativo">
                   <h1>Meu Day Office</h1>
                </div>
                <div>
@@ -36,7 +37,10 @@ export function Home() {
 
             <div className="container-eventos">
                <h2>Eventos</h2>
-               <input type="text" placeholder="Pesquisar meus eventos" />
+               <div>
+                  <label htmlFor="pesquisa" ><img src={lupaSVG} /></label>
+                  <input id="pesquisa" type="text" placeholder="Pesquisar meus eventos" />
+               </div>
                <button>+ Criar</button>
             </div>
 

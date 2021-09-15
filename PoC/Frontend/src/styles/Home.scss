@@ -26,8 +26,11 @@
          display: flex;
          justify-content: space-around;
 
+         .ativo {
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+         }
+
          div {
-            box-shadow: inset 0 4px 4px #00000020;
             width: 540px;
             height: 92px;
             display: flex;
@@ -39,16 +42,6 @@
       h1 {
          font-size: 24px;
          font-weight: normal;
-      }
-
-      input {
-         width: 400px;
-         height: 48px;
-         border: 1.5px solid #AAAAAA;
-         border-radius: 30px;
-         padding-left: 36px;
-         box-sizing: border-box;
-         margin: 0 31px 0 29px;
       }
 
       input:focus {
@@ -66,6 +59,31 @@
             width: 445px;
             border-bottom: 2px solid #FE4400;
             padding-bottom: 18px;
+         }
+
+         div {
+            margin: 0 31px 0 29px;
+            border: 1.5px solid #AAAAAA;
+            border-radius: 30px;
+            background-color: #FFF;
+            width: 445px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+         }
+
+         label {
+            margin-left: 25px;
+         }
+
+         input {
+            width: 400px;
+            height: 48px;
+            border-radius: 30px;
+            border:none;
+            padding-left: 36px;
+            box-sizing: border-box;
+            
          }
       }
 
