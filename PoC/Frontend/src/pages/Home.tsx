@@ -1,5 +1,5 @@
 import "../styles/Home.scss";
-import relogioSVG from "../images/Logo.svg";
+import relogioSVG from "../images/Relogio.svg";
 import lupaSVG from "../images/Lupa.svg";
 
 export function Home() {

@@ -15,6 +15,10 @@
   --purple: #4A1A8C;
 
   --yellow: #FFC91D;
+
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
 }
 
 * {
@@ -29,11 +33,12 @@ body, input, button, textarea, select {
 }
 
 button {
-  height: 50px;
+  height: 3em;
   width: 200px;
   border-radius: 8px;
   margin-top: 10px;
   font-weight: 500; 
+  background-color: #404099;
   color: #ffffff;
 
   display: flex;
@@ -45,12 +50,7 @@ button {
 
   transition: filter 0.2s;
 
-  &:not(:disabled):hover {
+  &:hover {
       filter: brightness(0.9);
   }       
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
 }

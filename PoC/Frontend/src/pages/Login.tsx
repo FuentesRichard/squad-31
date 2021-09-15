@@ -15,7 +15,6 @@ export function Login() {
                 <button> <img src={Logo_teams} alt="Logo Microsoft Teams" /> Entrar com Microsoft Teams</button>
                 <p id="recuperarSenha">Esqueceu seu senha? <a href="#">Clique aqui</a></p> 
             </main>
-            <footer></footer>
         </div>
     )
 }
