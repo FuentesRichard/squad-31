@@ -61,7 +61,8 @@ namespace Day.Office.Api.Data.Repositories.Implements
         {
             return await context.Agendamento.Include(x => x.EstacaoTrabalho)
                 .Where(x => x.EstacaoTrabalho.IdEscritorio == idEscritorio &&
-                x.Data == data && (checkIn >= x.HoraInicial && checkOut <= x.HoraFinal)).ToListAsync();
+                x.Data == data &&
+                (x.HoraInicial >= checkIn && x.HoraFinal <= checkOut)).ToListAsync();
         }
 
         public async Task<IEnumerable<Agendamento>> ObterAgendamentosFuncionario(int idFuncionario)

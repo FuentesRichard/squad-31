@@ -2,6 +2,7 @@
 using Day.Office.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Day.Office.Api.Data.Repositories.Implements
@@ -13,6 +14,12 @@ namespace Day.Office.Api.Data.Repositories.Implements
         {
             this.context = context;
         }
+
+        public async Task<Escritorio> ObterEscritorioPorId(int id)
+        {
+            return await context.Escritorio.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<Escritorio>> ObterEscritorios()
         {
             return await context.Escritorio.ToListAsync();

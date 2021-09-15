@@ -7,7 +7,8 @@ namespace Day.Office.Api.Dtos
         public string Subject { get; set; }
         public Body Body { get; set; }
         public Start Start { get; set; }
-        public End End { get; set; }        
+        public End End { get; set; }
+        public Location Location { get; set; }
         public bool AllowNewTimeProposals { get; set; }
         public string ShowAs { get; set; }               
     }
@@ -41,5 +42,14 @@ namespace Day.Office.Api.Dtos
 
         public DateTime DateTime { get; set; }
         public string TimeZone { get; set; }
+    }
+    public class Location
+    {
+        public Location(string displayName)
+        {
+            DisplayName = displayName;
+        }
+
+        public string DisplayName { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Day.Office.Api.Dtos;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Day.Office.Api.Clients.Implements
@@ -16,7 +17,7 @@ namespace Day.Office.Api.Clients.Implements
 
             return response.Data;
         }
-        public async Task CriarEventoCalendarioMicrosoft(string microsoftJwt, CreateEventRequest requestBody)
+        public async Task<GraphCreateEventResponse> CriarEventoCalendarioMicrosoft(string microsoftJwt, CreateEventRequest requestBody)
         {
             var client = new RestClient("https://graph.microsoft.com/v1.0/me/events");            
             var request = new RestRequest(Method.POST);
@@ -24,7 +25,31 @@ namespace Day.Office.Api.Clients.Implements
             request.AddHeader("Content-Type", "application/json");
             var body = JsonConvert.SerializeObject(requestBody);
             request.AddParameter("application/json", body, ParameterType.RequestBody);
-            IRestResponse response = await client.ExecuteAsync(request);            
+            IRestResponse response = await client.ExecuteAsync(request);
+
+            if (response.IsSuccessful)
+            {
+                var responseBody = JsonConvert.DeserializeObject<GraphCreateEventResponse>(response.Content);
+
+                return responseBody;
+            }
+
+            return null;
+        }
+
+        public async Task<GraphEventsResponse> ObterEventos(string microsoftJwt)
+        {
+            var client = new RestClient("https://graph.microsoft.com/v1.0/me/events");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("Authorization", $"Bearer {microsoftJwt}");
+            request.AddHeader("Content-Type", "application/json");            
+            var response = await client.ExecuteAsync(request);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return JsonConvert.DeserializeObject<GraphEventsResponse>(response.Content);
+            }
+            return null;
         }
     }
 }

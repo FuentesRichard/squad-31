@@ -15,15 +15,17 @@ namespace Day.Office.Api.Controllers
     [Route("api/[controller]")]
     public class AgendamentoController : ControllerBase
     {
+        private readonly IEscritorioRepository _escritorioRepository;
         private readonly IFuncionarioRepository _funcionarioRepository;
         private readonly IAgendamentoRepository _agendamentoRepository;
         private readonly IGraphApi _graphApi;
 
-        public AgendamentoController(IAgendamentoRepository agendamentoRepository, IFuncionarioRepository funcionarioRepository, IGraphApi graphApi)
+        public AgendamentoController(IAgendamentoRepository agendamentoRepository, IFuncionarioRepository funcionarioRepository, IGraphApi graphApi, IEscritorioRepository escritorioRepository)
         {
             _agendamentoRepository = agendamentoRepository;
             _funcionarioRepository = funcionarioRepository;
             _graphApi = graphApi;
+            _escritorioRepository = escritorioRepository;
         }
 
         [Authorize]
@@ -35,7 +37,7 @@ namespace Day.Office.Api.Controllers
 
             var funcionario = await _funcionarioRepository.ObterFuncionarioPorEmail(emailFuncionario);
             if (funcionario == null)
-            {
+            {                
                 var infomacoesUsuario = await _graphApi.ObterInformacoesUsuario(novoAgendamento.MicrosoftJwt);
                 funcionario = new Funcionario(infomacoesUsuario.DisplayName, infomacoesUsuario.UserPrincipalName, infomacoesUsuario.Id);
 
@@ -49,30 +51,41 @@ namespace Day.Office.Api.Controllers
                 novoAgendamento.IdEstacaoTrabalho
             );
 
-            var resultado = await _agendamentoRepository.AdicionarAgendamento(agendamento);
-            if (resultado)
+            var escritorio = await _escritorioRepository.ObterEscritorioPorId(novoAgendamento.IdEscritorio);
+
+            var request = new CreateEventRequest()
             {
-                var request = new CreateEventRequest()
+                Subject = $"Day Office - {novoAgendamento.Data.Date.ToString("dd-MM-yyyy")}",
+                AllowNewTimeProposals = true,
+                ShowAs = "free",
+                Body = new Body(),
+                End = new End(novoAgendamento.CheckOut),
+                Start = new Start(novoAgendamento.CheckIn),
+                Location = new Location($"Escritório - {escritorio.Cidade}")
+            };
+
+            var responseCriarEvento = await _graphApi.CriarEventoCalendarioMicrosoft(novoAgendamento.MicrosoftJwt, request);
+
+            if (responseCriarEvento != null)
+            {
+                agendamento.ExternalId = responseCriarEvento.Id;
+
+                var resultado = await _agendamentoRepository.AdicionarAgendamento(agendamento);
+                if (resultado)
                 {
-                    Subject = $"Day Office - {novoAgendamento.Data.Date.ToString("dd-MM-yyyy")}",
-                    AllowNewTimeProposals = true,
-                    ShowAs = "free",
-                    Body = new Body(),
-                    End = new End(novoAgendamento.CheckOut),
-                    Start = new Start(novoAgendamento.CheckIn)
-                };
-                await _graphApi.CriarEventoCalendarioMicrosoft(novoAgendamento.MicrosoftJwt, request);
+                    var response = new AgendamentoDto()
+                    {
+                        Id = agendamento.Id,
+                        Data = novoAgendamento.Data.Date.ToString("dd-MM-yyyy"),
+                        HoraInicial = novoAgendamento.CheckIn.ToString("HH:ss"),
+                        HoraFinal = novoAgendamento.CheckOut.ToString("HH:ss"),
+                        NomeFuncionario = funcionario.NomeCompleto
+                    };
 
-                var response = new AgendamentoDto(){
-                    Id = agendamento.Id,
-                    Data = novoAgendamento.Data.Date.ToString("dd-MM-yyyy"),
-                    HoraInicial = novoAgendamento.CheckIn.ToString("HH:ss"),
-                    HoraFinal = novoAgendamento.CheckOut.ToString("HH:ss"),
-                    NomeFuncionario = funcionario.NomeCompleto
-                };
-
-                return Ok(response);
+                    return Ok(response);
+                }            
             }
+
             return BadRequest();
         }
         [HttpGet]
@@ -120,7 +133,7 @@ namespace Day.Office.Api.Controllers
                 HoraFinal = x.HoraFinal.ToString("HH:ss"),
                 NomeFuncionario = funcionario.NomeCompleto
             }));
-        }
+        }       
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletarAgendamento([FromRoute] int id,

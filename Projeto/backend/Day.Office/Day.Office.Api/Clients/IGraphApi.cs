@@ -6,6 +6,7 @@ namespace Day.Office.Api.Clients
     public interface IGraphApi
     {
         Task<GraphMeResponse> ObterInformacoesUsuario(string microsoftJwt);
-        Task CriarEventoCalendarioMicrosoft(string microsoftJwt, CreateEventRequest request);
+        Task<GraphCreateEventResponse> CriarEventoCalendarioMicrosoft(string microsoftJwt, CreateEventRequest request);
+        Task<GraphEventsResponse> ObterEventos(string microsoftJwt);
     }
 }

@@ -6,6 +6,7 @@ namespace Day.Office.Api.Data.Repositories
 {
     public interface IEscritorioRepository
     {
+        Task<Escritorio> ObterEscritorioPorId(int id);
         Task<IEnumerable<Escritorio>> ObterEscritorios();
     }
 }

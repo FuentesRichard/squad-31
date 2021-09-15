@@ -32,6 +32,7 @@ namespace Day.Office.Api.Entities
         public DateTime HoraFinal { get; set; }
         public int IdFuncionario { get; set; }
         public int IdEstacaoTrabalho { get; set; }
+        public string ExternalId { get; set; }
 
         public EstacaoTrabalho EstacaoTrabalho { get; set; }
         public Funcionario Funcionario { get; set; }

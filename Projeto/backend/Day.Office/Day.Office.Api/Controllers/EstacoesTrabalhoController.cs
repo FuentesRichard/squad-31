@@ -38,7 +38,10 @@ namespace Day.Office.Api.Controllers
                 {
                     resultado.Add(new EstacaoTrabalhoDTO(item.Estacao, false));
                 }
-                resultado.Add(new EstacaoTrabalhoDTO(item.Estacao, true));
+                else
+                {
+                    resultado.Add(new EstacaoTrabalhoDTO(item.Estacao, true));
+                }
             }
 
             return resultado.OrderBy(x => x.NumeroLugar);

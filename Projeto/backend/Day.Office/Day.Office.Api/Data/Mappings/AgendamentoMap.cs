@@ -12,6 +12,7 @@ namespace Day.Office.Api.Data.Mappings
             builder.Property(x => x.Data).IsRequired();
             builder.Property(x => x.HoraInicial).IsRequired();
             builder.Property(x => x.HoraFinal).IsRequired();
+            builder.Property(x => x.ExternalId).IsRequired();
             builder.HasOne(x => x.Funcionario)
                 .WithMany(x => x.Agendamentos)
                 .HasForeignKey(x => x.IdFuncionario);
