@@ -36,6 +36,7 @@
  }
 
   main {
+    background-image: url("../images/Online_friends_pana.svg");
     grid-row-start: 2;
     width: 100vw;
     height: 90vh;
@@ -49,6 +50,7 @@
     @media (max-width: 700px){
       height: 100vh;
       width: 100vw;
+      background-image: none;
     }
   }
 
@@ -371,14 +373,14 @@
       button {
         margin-left: auto;
         margin-right: auto;
-        margin-top: 180px;
+        margin-top: 190px;
         font-size: 3vw;
         width: 40%;
         height: 8vh;
       }
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       > img {
         margin-top: 5px;
         margin-right: 5px;
@@ -387,13 +389,25 @@
 
       .div-input {
         font-size: 1.2rem;
-        margin-left: 6vw;
+        margin-left: 18vw;
       }
 
       button {
         font-size: 4vw;
         width: 50%;
         height: 8vh;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .div-input {
+        margin-left: 15vw;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .div-input {
+        margin-left: 10vw;
       }
     }
   }

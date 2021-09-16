@@ -64,7 +64,7 @@ export function Agendamento() {
 
       </header>
 
-      <main id="main" style={background}>
+      <main id="main">
 
         <form>
           <img id="vector_7" src={Vector_7} alt="Vector para esquerda" />

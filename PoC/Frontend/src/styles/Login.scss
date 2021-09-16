@@ -74,6 +74,10 @@
         #recuperarSenha {
             font-size: 1.3vw;
             text-align: center;
+
+            a {
+                text-decoration: none;
+            }
         }
 
         @media (max-width: 800px){
