@@ -30,7 +30,13 @@ export function Agendamento() {
     if (entrada) entrada.className = 'div-input2';
 
     let saida = document.getElementById('div-saida');
-    if (saida) saida.className = 'div-input2';
+    if (saida) {
+      saida.className = 'div-input2';
+      saida.id = 'div-saida2'
+    }
+
+    let botao = document.getElementById('botao');
+    if (botao) botao.id = ('botao2')
   };
 
   const background = {
@@ -41,9 +47,22 @@ export function Agendamento() {
     <div id="page-agendamento">
       <header>
         <img src={Relogio} alt="Relogio" /> 
-        <a href="#">Início</a>
-        <a href="#">Agendamento</a>
-        <a href="#">Sair</a>
+        <nav>
+               <ul>
+                  <li>
+                     <a href="#">Início</a>
+                  </li>
+                  <li>
+                     <a href="#">Agendamento</a>
+                  </li>
+                  <li>
+                     <a href="#">Conta</a>
+                  </li>
+                  <li>
+                     <a href="#">Sair</a>
+                  </li>
+               </ul>
+            </nav>
       </header>
       <main id="main" style={background}>
         <form>
@@ -89,13 +108,15 @@ export function Agendamento() {
                 <p>Check-out</p>
               </div>
 
-              <input
+              <input className="inputs"
                 type="datetime-local"
+                min="08:00:00:00"
+                max="06:00:00:00"
+                required
               />
             </div>
-
           </div>
-          <button type="submit" onClick={pesquisa}>
+          <button id="botao" type="submit" onClick={pesquisa}>
             Pesquisar
           </button>
         </form>
