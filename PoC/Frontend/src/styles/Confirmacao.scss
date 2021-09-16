@@ -3,6 +3,51 @@
   background: linear-gradient(180deg, #FFFFFF 22.51%, #E4CAFF 100%);
   overflow: hidden;
 
+  .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    z-index: 99999;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+
+    div {
+      cursor: pointer;
+      z-index: 99999;
+      width: 400px;
+      position: relative;
+      margin: 10% auto;
+      padding: 15px 20px;
+      background: #fff;
+    }
+
+    .fechar {
+      z-index: 99999;
+      position: absolute;
+      width: 30px;
+      right: -15px;
+      top: -20px;
+      text-align: center;
+      line-height: 30px;
+      margin-top: 5px;
+      background: #ff4545;
+      border-radius: 50%;
+      font-size: 16px;
+      color: #8d0000;
+    }
+  }
+
+  #fecharModal {
+    opacity: 0;
+  }
+
   header {
     background-color: #FFF;
     display: flex;

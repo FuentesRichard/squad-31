@@ -113,7 +113,7 @@ export function Agendamento() {
                 min="08:00:00:00"
                 max="06:00:00:00"
                 required
-              />
+              />href="#fechar"
             </div>
           </div>
           <button id="botao" type="submit" onClick={pesquisa}>
