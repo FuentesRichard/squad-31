@@ -8,7 +8,6 @@ import user_check from '../../assets/images/user-check.svg';
 import user_x from '../../assets/images/user-x.svg';
 import { PageAgendamento } from "./styles";
 import api from "../../services/api";
-import { useAutenticacao } from "../../hooks/auth";
 import { Grid } from "@material-ui/core";
 
 interface EscritorioData {
@@ -23,7 +22,6 @@ interface EstacaoTrabalho {
 }
 
 const Agendamento : React.FC = () => {
-    const { user } = useAutenticacao()
 
     const [dataInicio, setDataInicio] = useState<string>();
     const [dataFim, setDataFim] = useState<string>();
@@ -42,26 +40,26 @@ const Agendamento : React.FC = () => {
     //     }
     //     return group;
     // }
+    const tokenApi = localStorage.getItem("@DayOffice:tokenApi");
 
     const handleAgendamento = useCallback(async (event : FormEvent)=> {
         event.preventDefault();
-        debugger;
         var response = await api.get<Array<EstacaoTrabalho>>(`/api/EstacoesTrabalho?idEscritorio=${estado}&checkIn=${dataInicio}&checkOut=${dataFim}`, {            
             headers: {
-                'Authorization' : `Bearer ${user.tokenApi}`
+                'Authorization' : `Bearer ${tokenApi}`
             }
         });
 
         if(response.status == 200){
             await setEstacoesTrabalho([...response.data]);
         }
-    },[dataInicio, dataFim, user.tokenApi]);
+    },[dataInicio, dataFim, tokenApi]);
 
     useEffect(()=>{
         async function ObterEscritorio(){            
             const response = await api.get<Array<EscritorioData>>("/api/escritorio", {
                 headers:{
-                    'Authorization' : `Bearer ${user.tokenApi}`
+                    'Authorization' : `Bearer ${tokenApi}`
                 }
             });
             await setEscritorios([...response.data]);

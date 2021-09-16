@@ -1,8 +1,19 @@
-import React from "react";
+import { useMsal } from "@azure/msal-react";
+import React, { useCallback } from "react";
 import relogioSVG from '../../assets/images/Relogio.svg';
 import { Header } from "./styles";
 
 const HeaderDayOffice : React.FC = () => {
+   const { instance } = useMsal();
+   const handleLogout = useCallback(() => {      
+      instance.logoutPopup({
+         postLogoutRedirectUri: "/",
+         mainWindowRedirectUri: "/"
+      });    
+      
+      localStorage.removeItem('@DayOffice:microsoftToken');
+      localStorage.removeItem('@DayOffice:tokenApi');
+  },[instance]);
     
     return (
         <Header>
@@ -19,7 +30,7 @@ const HeaderDayOffice : React.FC = () => {
                      <a href="#">Conta</a>
                   </li>
                   <li>
-                     <a href="#">Sair</a>
+                     <a onClick={handleLogout}>Sair</a>
                   </li> 
                </ul>
             </nav>

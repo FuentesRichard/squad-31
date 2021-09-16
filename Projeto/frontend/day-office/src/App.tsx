@@ -1,15 +1,18 @@
+import { PublicClientApplication } from '@azure/msal-browser';
+import { MsalProvider } from '@azure/msal-react';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import AppProvider from './hooks';
 import Routes from './routes';
 import GlobalStyle from './styles/global';
+import config from './config/msalConfig';
 
 const App : React.FC = () => {
+  const msalIntance = new PublicClientApplication(config.msalConfig);
   return (
     <Router>   
-      <AppProvider>
+      <MsalProvider instance={msalIntance}>
         <Routes />
-      </AppProvider>
+      </MsalProvider>
       <GlobalStyle/>
     </Router>
   );

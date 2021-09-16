@@ -1,16 +1,16 @@
+import { useIsAuthenticated } from '@azure/msal-react';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from '../components/Header';
-import { useAutenticacao } from '../hooks/auth';
 
 import SignIn from '../pages/SignIn';
 import DayOfficeRoutes from './DayOfficeRoutes';
 
 const Routes: React.FC = () => {
 
-  const { user } = useAutenticacao();
+  const isAuthenticated = useIsAuthenticated();
 
-  if(user.user){
+  if(isAuthenticated){
     return (
       <>
         <Header/>

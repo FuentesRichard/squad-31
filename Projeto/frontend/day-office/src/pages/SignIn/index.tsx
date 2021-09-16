@@ -1,14 +1,40 @@
 import React, { useCallback } from 'react';
-import { useAutenticacao } from '../../hooks/auth';
 import Illustration from '../../assets/images/Illustration_1.svg';
 import Logo_teams from '../../assets/images/Logo-microsoft_teams.svg'
 import { Aside, Main, PageLogin } from './styles';
+import { useMsal } from '@azure/msal-react';
+import config from '../../config/msalConfig';
+import { AccountInfo } from '@azure/msal-browser';
+import apiConfig from '../../config/apiConfig';
 
 const SignIn : React.FC = () => {
-    const {signIn} = useAutenticacao();
+    const { instance, accounts} = useMsal();
+
+    const getTokenRedirect = (async (account: AccountInfo) => {      
+        return instance.acquireTokenSilent({scopes : apiConfig.scopes, account}).catch(error => {                      
+           return instance.acquireTokenPopup({scopes : apiConfig.scopes, account});
+        })});
+    const passTokenToApi = (async (account : AccountInfo) : Promise<string> =>{
+        const result = await getTokenRedirect(account)
+            .then(response => {            
+              return response.accessToken;            
+            }).catch(error => {              
+                console.error(error);
+          });        
+          return result ? result : '';
+    });
+
     const SignIn = useCallback(async ()=>{
-        await signIn();
-    },[signIn])
+        instance.loginPopup(config.loginRequest).then(async (result) => {
+            if(result.account){
+                var tokenApi = await passTokenToApi(result.account);
+                localStorage.setItem('@DayOffice:microsoftToken', result.accessToken);
+                localStorage.setItem('@DayOffice:tokenApi', tokenApi);
+            }
+        }).catch(e => {
+            console.log(e);
+        });
+    },[])
     return (
         <PageLogin>
             <Aside>
