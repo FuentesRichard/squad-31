@@ -21,10 +21,10 @@ export function Confirmacao() {
                </ul>
             </nav>
          </header>
-      <div id="mensagem">
-        <img src={Pessoa} alt="Pessoa de mascara" />
-        <p>Sua Ida ao escritório foi agendada!</p>
-      </div>
+         <div id="mensagem">
+            <img src={Pessoa} alt="Pessoa de mascara" />
+            <p>Sua ida ao escritório foi agendada!</p>
+         </div>
     </div>
   )
 }

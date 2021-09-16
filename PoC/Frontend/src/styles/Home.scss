@@ -115,7 +115,22 @@
       }
    }
 
-   @media (max-width: 800px) {
+
+   @media (max-width: 900px) {
+      .container-eventos {
+         div {
+            width: 10vw;   
+         }
+
+         button {
+            grid-row-start: 1;
+            grid-column-start: 1;
+            width: 15vw;
+         }
+      }
+   }
+
+   @media (max-width: 700px) {
       main {
          .titles {
             h1 {

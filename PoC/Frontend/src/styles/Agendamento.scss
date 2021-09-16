@@ -69,6 +69,7 @@
     img {
       margin-top: 5px;
       margin-right: 10px;
+      margin-left: 3vw;
     }
 
     strong {
@@ -82,7 +83,7 @@
 
     .div-input {
       float: left;
-      width: 20ch;
+      width: 25ch;
       height: 5ch;
       border-top: 1px solid var(--select-border);
       border-bottom: 1px solid var(--select-border);
@@ -164,6 +165,7 @@
     }
 
     #select-div {
+      width: 20ch;
       border-left: 1px solid var(--select-border);
       border-radius: 0.25em 0em 0em 0.25em;
 
@@ -227,13 +229,15 @@
 
       #input-div {
         width: 104%;
+        max-width: 650px;
         margin: 0 auto;
       }
   
       .div-input {
         float: left;
-        width: 20ch;
-        height: 3ch;
+        width: 25ch;
+        height: 4.25ch;
+        margin-left: 23vw;
         border-top: 1px solid var(--select-border);
         border-bottom: 1px solid var(--select-border);
         padding: 0.25em 0.5em;
@@ -275,6 +279,8 @@
         display: inline-block;
         width: 25ch;
         height: 5ch;
+        margin-left: auto;
+        margin-right: auto;
         border-top: 1px solid var(--select-border);
         border-bottom: 1px solid var(--select-border);
         padding: 0.25em 0.5em;
@@ -313,8 +319,9 @@
       }
   
       #select-div {
-        border-left: 1px solid var(--select-border);
-        border-radius: 0.25em 0em 0em 0.25em;
+        width: 25ch;
+        border: 1px solid var(--select-border);
+        border-radius: 0.25em;
   
         select {
           -webkit-appearance: none;
@@ -337,16 +344,21 @@
           outline: none;
         }
       }
-  
+      
+      #div-entrada {
+        border: 1px solid var(--select-border);
+        border-radius: 0.25em;
+      }
+
       #div-saida {
-        border-right: 1px solid var(--select-border);
-        border-radius: 0em 0.25em 0.25em 0em;
+        border: 1px solid var(--select-border);
+        border-radius: 0.25em;
       }
   
       #div-saida2 {
         float: right;
         border-right: 1px solid var(--select-border);
-        border-radius: 0em 0.25em 0.25em 0em;
+        border-radius: 0.25em;
   
         p {
           margin-left: 3px;
@@ -357,12 +369,31 @@
       }
   
       button {
-        margin-left: 45%;
-        margin-top: 90px;
-        font-weight: 600;
-        font-size: 1.3vw;
-        border-radius: 30px;
-        width: 30%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 180px;
+        font-size: 3vw;
+        width: 40%;
+        height: 8vh;
+      }
+    }
+
+    @media (max-width: 500px) {
+      > img {
+        margin-top: 5px;
+        margin-right: 5px;
+        margin-left: 6vw;
+      }
+
+      .div-input {
+        font-size: 1.2rem;
+        margin-left: 6vw;
+      }
+
+      button {
+        font-size: 4vw;
+        width: 50%;
+        height: 8vh;
       }
     }
   }
