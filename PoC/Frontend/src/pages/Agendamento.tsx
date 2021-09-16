@@ -46,25 +46,26 @@ export function Agendamento() {
   return (
     <div id="page-agendamento">
       <header>
+
         <img src={Relogio} alt="Relogio" /> 
         <nav>
-               <ul>
-                  <li>
-                     <a href="#">Início</a>
-                  </li>
-                  <li>
-                     <a href="#">Agendamento</a>
-                  </li>
-                  <li>
-                     <a href="#">Conta</a>
-                  </li>
-                  <li>
-                     <a href="#">Sair</a>
-                  </li>
-               </ul>
-            </nav>
+          <ul>
+            <li>
+                <a href="/home">Início</a>
+            </li>
+            <li>
+                <a href="/agendamento">Agendamento</a>
+            </li>
+            <li>
+                <a href="/">Sair</a>
+            </li>
+          </ul>
+        </nav>
+
       </header>
+
       <main id="main" style={background}>
+
         <form>
           <img id="vector_7" src={Vector_7} alt="Vector para esquerda" />
           <div id="Titulo-div">
@@ -83,7 +84,6 @@ export function Agendamento() {
                 <option value="0">São Paulo</option>
                 <option value="1">Santos</option>
                 <option value="2">Outro</option>
-                <img src={Vector_8} alt="Vector para baixo" />
               </select>
               
             </div>

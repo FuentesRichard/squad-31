@@ -18,21 +18,31 @@ function ativar_mt() {
    if (md) md.className = 'inativo'
 }
 
+function newPlaceholder(){
+   const newWidth = window.innerWidth;
+   if (newWidth > 800) {
+      return 'Pesquisar meus eventos'
+   }
+   else {
+      return 'Pesquisar'
+   }
+}
+
 export function Home() {
    return (
       <div id="page-home">
          <header>
-            <img src={relogioSVG}></img>
+            <img src={relogioSVG} alt="relogio"></img>
             <nav>
                <ul>
                   <li>
-                     <a href="#">Início</a>
+                     <a href="/home">Início</a>
                   </li>
                   <li>
-                     <a href="#">Agendamento</a>
+                     <a href="/agendamento">Agendamento</a>
                   </li>
                   <li>
-                     <a href="#">Sair</a>
+                     <a href="/">Sair</a>
                   </li>
                </ul>
             </nav>
@@ -52,7 +62,7 @@ export function Home() {
                <h2>Eventos</h2>
                <div>
                   <label htmlFor="pesquisa" ><img src={lupaSVG} /></label>
-                  <input id="pesquisa" type="text" placeholder="Pesquisar meus eventos" />
+                  <input name="pesquisa" type="text" placeholder={newPlaceholder()}/>
                </div>
                <button>+ Criar</button>
             </div>

@@ -30,7 +30,8 @@
       .titles {
          background-color: #FFF;
          display: flex;
-         justify-content: left;
+         justify-content: center;
+         border-top: 0.5px solid rgba(126, 126, 126, 0.26);
 
          .ativo {
             box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -38,7 +39,7 @@
          }
 
          div {
-            width: 20vw;
+            width: 40vw;
             height: 10vh;
             display: flex;
             justify-content: center;
@@ -117,25 +118,40 @@
    @media (max-width: 800px) {
       main {
          .titles {
+            h1 {
+               font-size: 3.5vh;
+            }
+
             div {
-               width: 30vw;
+               width: 50vw;
             }
          }
 
          .container-eventos {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 1fr;
             margin: 0 5vw;
             margin-top: 2vw;
 
             h2 {
-               width: 20vw;
+               text-align: center;
+               grid-row-start: 2;
+               width: 85vw;
             }
 
             div {
-               width: 43vw
+               grid-row-start: 1;
+               grid-column-start: 1;
+               margin-left: 0;
+               width: 60vw
             }
 
             button {
-               width: 14vw;
+               grid-row-start: 1;
+               grid-column-start: 1;
+               margin-left: 65vw;
+               width: 20vw;
             }
          }
       }

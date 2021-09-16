@@ -1,0 +1,57 @@
+#page-confirmacao {
+  height: 100vh;
+  background: linear-gradient(180deg, #FFFFFF 22.51%, #E4CAFF 100%);
+  overflow: hidden;
+
+  header {
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 10vh;
+
+    ul {
+       list-style: none;
+       display: flex;
+    }
+
+    li {
+       margin-right: 5vw;
+
+       a {
+          font-weight: 600;
+          color: black;
+          text-decoration: none;
+        }
+    }
+  }
+
+  #mensagem {
+    display: flex;
+    justify-content: space-around;
+
+    p {
+      margin-top: 20vh;
+      font-size: 8vh;
+      font-weight: 600;
+    }
+
+    img {
+      height: 90vh;
+    }
+
+    @media (max-width: 700px) {
+      flex-direction: column;
+
+      img {
+        height: 70vh;
+      }
+      
+      p {
+        text-align: center;
+        margin-top: 0;
+        font-size: 6vh;
+      }
+    }
+  }
+}
