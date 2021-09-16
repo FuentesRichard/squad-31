@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-seat-picker": "^1.5.3",
+    "react-tooltip": "^4.2.21"
+  }
+}
