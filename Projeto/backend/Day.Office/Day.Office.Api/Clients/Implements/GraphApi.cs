@@ -51,5 +51,13 @@ namespace Day.Office.Api.Clients.Implements
             }
             return null;
         }
+
+        public async Task DeletarEvento(string microsoftJwt, string externalId)
+        {
+            var client = new RestClient($"https://graph.microsoft.com/v1.0/me/events/{externalId}");
+            var request = new RestRequest(Method.DELETE);
+            request.AddHeader("Authorization", $"Bearer {microsoftJwt}");
+            await client.ExecuteAsync(request);
+        }
     }
 }

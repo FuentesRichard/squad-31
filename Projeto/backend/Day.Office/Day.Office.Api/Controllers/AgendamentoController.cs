@@ -137,27 +137,13 @@ namespace Day.Office.Api.Controllers
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletarAgendamento([FromRoute] int id,
-            [FromServices] IAgendamentoRepository agendamentoRepository)
+            [FromHeader] string authorizationMS)
         {
-            var agendamentoRemovido = await agendamentoRepository.RemoverAgendamento(id);
+            var agendamento = await _agendamentoRepository.ObterAgendamento(id);
+            await _graphApi.DeletarEvento(authorizationMS, agendamento.ExternalId);
+            var agendamentoRemovido = await _agendamentoRepository.RemoverAgendamento(id);
+
             if(agendamentoRemovido)
-            {
-                return Ok();
-            }
-            return NotFound();
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> AlterarAgendamentoRequest([FromBody] AlterarAgendamentoRequest agendamento)
-        {
-            var agendamentoAntigo = await _agendamentoRepository.ObterAgendamento(agendamento.IdAgendamento);
-            agendamentoAntigo.Data = agendamento.Data;
-            agendamentoAntigo.HoraInicial = agendamento.CheckIn;
-            agendamentoAntigo.HoraFinal = agendamento.CheckOut;
-            agendamentoAntigo.IdEstacaoTrabalho = agendamento.IdEstacaoTrabalho;
-            var resultado = await _agendamentoRepository.AlterarDados(agendamentoAntigo);
-
-            if (resultado)
             {
                 return Ok();
             }
