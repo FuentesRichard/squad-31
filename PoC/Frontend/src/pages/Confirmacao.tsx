@@ -14,14 +14,14 @@ function popup(event: event) {
 export function Confirmacao() {
   return (
     <div id="page-confirmacao">
-      <div id="abrirModal" className="modal">
+      {/* <div id="abrirModal" className="modal">
          <div>
             <button onClick={popup} title="Fechar" className="fechar">x</button>
             <h2>Janela Modal</h2>
             <p>Esta é uma simples janela de modal.</p>
             <p>Você pode fazer qualquer coisa aqui, página de Login, pop-ups, ou formulários</p>
          </div>
-      </div>
+      </div> */}
       
       <header>
             <img src={relogioSVG} alt="relogio"></img>

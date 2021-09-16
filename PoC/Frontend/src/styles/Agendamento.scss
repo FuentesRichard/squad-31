@@ -224,7 +224,19 @@
       margin-top: 20px;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 950px) {
+      .div-input {
+        width: 22ch;
+      }
+    }
+
+    @media(max-width: 850px) {
+      .div-input {
+        width: 20ch;
+      }
+    }
+
+    @media (max-width: 800px) {
       strong {
         font-size: 1.5em;
       }

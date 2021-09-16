@@ -1,7 +1,7 @@
 import Relogio from '../images/Relogio.svg'
 import Online_friends from '../images/Online_friends_pana.svg'
 import Vector_7 from '../images/Vector_7.svg'
-import Vector_8 from '../images/Vector_8.svg'
+// import Vector_8 from '../images/Vector_8.svg'
 import MapPin from '../images/map-pin.svg'
 import user_check from '../images/user-check.svg'
 import user_x from '../images/user-x.svg'
