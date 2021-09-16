@@ -1,6 +1,8 @@
 import "../styles/Confirmacao.scss";
 import relogioSVG from "../images/Relogio.svg";
 import Pessoa from '../images/Person(Confirmacao).svg';
+import prevencaMed from '../images/Illustration_prevencao.svg'
+import prevent from '../images/prevent.svg'
 
 type event = {
    target: any
@@ -14,14 +16,14 @@ function popup(event: event) {
 export function Confirmacao() {
   return (
     <div id="page-confirmacao">
-      {/* <div id="abrirModal" className="modal">
+      <div id="abrirModal" className="modal">
          <div>
+            <h2>Medidas de prevenção ao COVID - 19</h2>
+            <img id="medico" src={prevencaMed} alt="Médico de mascara se protegendo do vírus" />
+            <img id="dicas" src={prevent} alt="Dicas de prevenção" />
             <button onClick={popup} title="Fechar" className="fechar">x</button>
-            <h2>Janela Modal</h2>
-            <p>Esta é uma simples janela de modal.</p>
-            <p>Você pode fazer qualquer coisa aqui, página de Login, pop-ups, ou formulários</p>
          </div>
-      </div> */}
+      </div>
       
       <header>
             <img src={relogioSVG} alt="relogio"></img>

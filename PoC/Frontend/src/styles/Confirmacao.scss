@@ -9,38 +9,71 @@
     right: 0;
     bottom: 0;
     left: 0;
-    font-family: Arial, Helvetica, sans-serif;
     background: rgba(0,0,0,0.8);
     backdrop-filter: blur(5px);
-    z-index: 99999;
+    z-index: 9;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
-    pointer-events: none;
 
     div {
-      cursor: pointer;
-      z-index: 99999;
-      width: 400px;
+      flex-direction: row;
+      border-radius: 3px;
+      z-index: 9;
+      width: 60vw;
+      height: 95vh;
       position: relative;
-      margin: 10% auto;
+      margin: 2.5vh auto;
       padding: 15px 20px;
       background: #fff;
+      text-align: center;
+
+      #medico {
+        height: 80vh;
+        margin-right: 10vw;
+        margin-bottom: -80vh;
+      }
+
+      #dicas {
+        height: 80vh;
+        margin-left: 25vw;
+      }
     }
 
     .fechar {
-      z-index: 99999;
+      z-index: 9;
       position: absolute;
-      width: 30px;
-      right: -15px;
-      top: -20px;
+      width: 40px;
+      height: 40px;
+      right: 5px;
+      top: 3px;
       text-align: center;
       line-height: 30px;
       margin-top: 5px;
-      background: #ff4545;
+      background: rgba(0, 0, 0, 0);
       border-radius: 50%;
       font-size: 16px;
       color: #8d0000;
+    }
+
+    @media (max-width: 700px) {
+      div {
+        width: 100vw;
+        text-align: center;
+        font-size: 3vh;
+        border-radius: 0px;
+        height: 100vh;
+        margin: 0;
+
+        #medico {
+          display: none;
+        }
+
+        #dicas {
+          height: 85vh;
+          margin-left: 0;
+        }
+      }
     }
   }
 
