@@ -95,7 +95,6 @@ namespace Day.Office.Api.Controllers
 
             return Ok(agendamentos);
         }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> ObterAgendamento([FromRoute] int id)
         {

@@ -36,11 +36,11 @@ namespace Day.Office.Api.Controllers
             {
                 if (estacoesOcupadas.Contains(item.Id))
                 {
-                    resultado.Add(new EstacaoTrabalhoDTO(item.Estacao, false));
+                    resultado.Add(new EstacaoTrabalhoDTO(item.Id, item.Estacao, false));
                 }
                 else
                 {
-                    resultado.Add(new EstacaoTrabalhoDTO(item.Estacao, true));
+                    resultado.Add(new EstacaoTrabalhoDTO(item.Id, item.Estacao, true));
                 }
             }
 
