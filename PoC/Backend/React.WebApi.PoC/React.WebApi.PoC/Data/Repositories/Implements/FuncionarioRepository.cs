@@ -55,5 +55,22 @@ namespace React.WebApi.PoC.Data.Repositories.Implements
             }
             return false;
         }
+        public async Task<bool> AlterarFuncionario(Funcionario funcionario)
+        {
+            var funcionarios = await DataContext.Funcionarios.ToListAsync();
+            foreach(var item in funcionarios)
+            {
+                if(item.Id == funcionario.Id)
+                {
+                    item.Nome = funcionario.Nome;
+                    item.Email = funcionario.Email;
+                    item.Senha = funcionario.Senha;
+                    DataContext.Funcionarios.Update(item);
+                    var alteracao = await DataContext.SaveChangesAsync();
+                    return alteracao > 0;
+                }
+            }
+            return false;
+        }
     }
 }

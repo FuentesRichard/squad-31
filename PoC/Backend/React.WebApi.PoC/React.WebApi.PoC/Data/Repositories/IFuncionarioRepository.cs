@@ -10,5 +10,6 @@ namespace React.WebApi.PoC.Data.Repositories
         Task<List<Funcionario>> ObterFuncionarios();
         Task<Funcionario> ObterFuncionario(int id);
         Task<bool> RemoverFuncionario(int id);
+        Task<bool> AlterarFuncionario(Funcionario funcionario);
     }
 }
