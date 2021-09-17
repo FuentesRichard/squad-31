@@ -1,9 +1,3 @@
-:root {
-  --select-border: rgb(219, 58, 219);
-  --select-focus: rgb(103, 103, 141);
-  --select-arrow: var(--select-border);
-}
-
 #page-agendamento {
   height: 100vh;  
   overflow: hidden;  
@@ -87,8 +81,8 @@
       float: left;
       width: 25ch;
       height: 5ch;
-      border-top: 1px solid var(--select-border);
-      border-bottom: 1px solid var(--select-border);
+      border-top: 1px solid var(--blue-second);
+      border-bottom: 1px solid var(--blue-second);
       padding: 0.25em 0.5em;
       font-size: 1.25rem;
       line-height: 1.1;
@@ -129,8 +123,8 @@
       display: inline-block;
       width: 25ch;
       height: 5ch;
-      border-top: 1px solid var(--select-border);
-      border-bottom: 1px solid var(--select-border);
+      border-top: 1px solid var(--blue-second);
+      border-bottom: 1px solid var(--blue-second);
       padding: 0.25em 0.5em;
       font-size: 1rem;
       line-height: 1.1;

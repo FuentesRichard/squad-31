@@ -1,6 +1,7 @@
 import "../styles/Home.scss";
 import relogioSVG from "../images/Relogio.svg";
 import lupaSVG from "../images/Lupa.svg";
+import settings from "../images/settings.svg";
 
 function ativar_md() {
    let md = document.getElementById('meuday')
@@ -66,7 +67,12 @@ export function Home() {
                </div>
                <button>+ Criar</button>
             </div>
-
+            <div className="cards">
+               <img src={settings} alt="" />
+               <h1>Unidade Teste</h1>
+               <p className="Estacao">Estação teste</p>
+               <p className="horario">13h - 15h</p>
+            </div>
          </main>
       </div>
    );
