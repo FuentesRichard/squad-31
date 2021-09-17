@@ -1,14 +1,12 @@
 import React, { FormEvent, useCallback, useEffect, useState }  from "react";
-import Relogio from '../../assets/images/Relogio.svg';
-import Online_friends from '../../assets/images/Online_friends_pana.svg';
 import Vector_7 from '../../assets/images/Vector_7.svg';
-import Vector_8 from '../../assets/images/Vector_8.svg';
 import MapPin from '../../assets/images/map-pin.svg';
 import user_check from '../../assets/images/user-check.svg';
 import user_x from '../../assets/images/user-x.svg';
-import { PageAgendamento } from "./styles";
+import { Mesa, MesaOcupada, PageAgendamento, TituloAgendamento } from "./styles";
 import api from "../../services/api";
 import { Grid } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
 
 interface EscritorioData {
     id: number,
@@ -20,27 +18,65 @@ interface EstacaoTrabalho {
     numeroLugar: number,
     disponivel: boolean
 }
-
 const Agendamento : React.FC = () => {
+    type event = {
+        target: any
+    }
+    
+    var history = useHistory();
+     
+    function pesquisa(event: event) {
+        let titulo = document.getElementById('titulo');
+        if (titulo) titulo.innerHTML = '';
 
+        let titulo_div = document.getElementById('Titulo-div');
+        if (titulo_div)  titulo_div.style.margin = '0';
+
+        let main = document.getElementById('main');
+        if (main) main.style.backgroundImage = '';
+
+        let select = document.getElementById('select-div');
+        if (select) select.className = 'div-input2';
+
+        let entrada = document.getElementById('div-entrada');
+        if (entrada) entrada.className = 'div-input2';
+
+        let saida = document.getElementById('div-saida');
+        if (saida) {
+            saida.className = 'div-input2';
+            saida.id = 'div-saida2'
+        }
+
+        let botao = document.getElementById('botao');
+        if (botao) botao.id = ('botao2')
+    };
     const [dataInicio, setDataInicio] = useState<string>();
     const [dataFim, setDataFim] = useState<string>();
     const [estado, setEstado] = useState<string>("1");
-    const [estacoesTrabalho, setEstacoesTrabalho] = useState([] as EstacaoTrabalho[]);
-
+    const [estacoesTrabalho, setEstacoesTrabalho] = useState([] as Array<EstacaoTrabalho>);
     const [escritorios, setEscritorios] = useState([] as EscritorioData[]);
 
-    // const groupArr = (data: Array<object>, n: number) => {
-    //     var group = [] as Array<object>;
-    //     for (var i = 0, j = 0; i < data.length; i++) {
-    //         if (i >= n && i % n === 0)
-    //             j++;
-    //         group[j] = group[j] || [];
-    //         group[j].push(data[i])
-    //     }
-    //     return group;
-    // }
     const tokenApi = localStorage.getItem("@DayOffice:tokenApi");
+    const tokenMS = localStorage.getItem("@DayOffice:microsoftToken");
+
+    const handleAgendar = useCallback(async (id : number)=>{
+        if(window.confirm('Deseja agendar essa mesa?')){            
+            var response = await api.post(`/api/agendamento`,{
+                microsoftJwt: tokenMS,
+                data: dataInicio,
+                checkIn : dataInicio,
+                checkOut: dataFim,
+                idEscritorio: estado,
+                idEstacaoTrabalho: id
+            },{            
+                headers: {
+                    'Authorization' : `Bearer ${tokenApi}`
+                }
+            });    
+
+            history.push('/home');
+        }
+    },[dataInicio, dataFim, estado]);
 
     const handleAgendamento = useCallback(async (event : FormEvent)=> {
         event.preventDefault();
@@ -50,7 +86,7 @@ const Agendamento : React.FC = () => {
             }
         });
 
-        if(response.status == 200){
+        if(response.status == 200){                                    
             await setEstacoesTrabalho([...response.data]);
         }
     },[dataInicio, dataFim, tokenApi]);
@@ -67,17 +103,19 @@ const Agendamento : React.FC = () => {
         ObterEscritorio();
     },[]);
 
-
-
     return (
         <>
         <PageAgendamento>            
             <main>
                 <form onSubmit={handleAgendamento}>
-                <div id="Titulo">
-                    <img id="vector_7" src={Vector_7} alt="Vector para esquerda" />
-                    <strong>Agende seu próximo evento!</strong>
-                </div>
+                
+                    <TituloAgendamento>
+                        <Link to="/home">
+                            <img id="vector_7" src={Vector_7} alt="Vector para esquerda" />                        
+                        </Link>
+                        <strong>Agende seu próximo evento!</strong>
+                    </TituloAgendamento>
+                               
                 <div id="input-div">
                     <div id="select-div" className="div-input">
                     <div>
@@ -127,18 +165,38 @@ const Agendamento : React.FC = () => {
                 <button type="submit">
                     Pesquisar
                 </button>
-                </form>
-                <Grid container spacing={1}>
-                {
-                    estacoesTrabalho.map(item => {
-                        return (
-                            <Grid container item xs={12} md={6} lg={6} xl={4} key={item.id}>
-                                {item.numeroLugar}-{item.disponivel ? "Sim" : "Não" }
-                            </Grid>
-                        );
-                    })
-                }
-                </Grid>
+                </form>                
+                {           
+                <div style={{marginTop: '45px'}}>         
+                    <Grid container spacing={1}>
+                    {
+                        estacoesTrabalho.map((item,index) => {  
+                            if(item.disponivel)                          {
+                                return (                            
+                                    <Grid container justifyContent="center" item xs={12} md={6} lg={6} xl={4} key={item.id}>
+                                        {
+                                            <Mesa onClick={() => {handleAgendar(item.id)}}>
+                                                {item.numeroLugar}
+                                            </Mesa>
+                                        }
+                                    </Grid>
+                                );
+                            }else{
+                                return (                            
+                                    <Grid container  justifyContent="center" item xs={12} md={6} lg={6} xl={4} key={item.id}>
+                                        {
+                                            <MesaOcupada>
+                                                {item.numeroLugar}
+                                            </MesaOcupada>
+                                        }
+                                    </Grid>
+                                );
+                            }
+                        })
+                    }
+                    </Grid>
+                </div>
+                }                
             </main>
         </PageAgendamento>
         </>

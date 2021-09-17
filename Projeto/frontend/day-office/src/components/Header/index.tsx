@@ -1,5 +1,6 @@
 import { useMsal } from "@azure/msal-react";
 import React, { useCallback } from "react";
+import { Link } from "react-router-dom";
 import relogioSVG from '../../assets/images/Relogio.svg';
 import { Header } from "./styles";
 
@@ -16,25 +17,22 @@ const HeaderDayOffice : React.FC = () => {
   },[instance]);
     
     return (
-        <Header>
-            <img src={relogioSVG}></img>
-            <nav>
-               <ul>
-                  <li>
-                     <a href="#">Início</a>
-                  </li>
-                  <li>
-                     <a href="#">Agendamento</a>
-                  </li>
-                  <li>
-                     <a href="#">Conta</a>
-                  </li>
-                  <li>
-                     <a onClick={handleLogout}>Sair</a>
-                  </li> 
-               </ul>
-            </nav>
-         </Header>
+      <Header>
+         <img src={relogioSVG} alt="relogio"></img>
+         <nav>
+            <ul>
+               <li>
+                  <Link to="/home">Início</Link>
+               </li>
+               <li>
+                  <Link to="/agendamento">Agendamento</Link>
+               </li>
+               <li>
+                  <a onClick={handleLogout}>Sair</a>
+               </li>
+            </ul>
+         </nav>
+      </Header>
     );
 }
 
